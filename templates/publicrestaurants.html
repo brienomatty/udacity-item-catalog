@@ -1,0 +1,48 @@
+{% extends "main.html" %}
+{% block content %}
+	<div class="row top-menu">
+		<div class="col-md-10"></div>
+		<div class="col-md-2 text-right">
+            <a href="{{url_for('showLogin')}}">Click Here to Log in </a>
+            <a href="{{url_for('gdisconnect')}}">Click Here to Log Out </a>
+		</div>
+	</div>
+	<div class="row divider blue">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner main">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<h1>Restaurants</h1>
+		</div>
+	</div>
+
+	<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+<a href="{{url_for('newRestaurant')}}">Add New Restaurant</a>
+
+    {% for i in restaurant %}
+
+        <div>
+
+            <h3>{{i.name}} - (ID: {{i.id}})</h3>
+            <a href="{{url_for('restaurantMenu', restaurant_id=i.id)}}">View Menu</a>
+
+        </div>
+    {% endfor %}
+	
+
+</br>
+</br>
+{% endblock %}
